@@ -11,7 +11,7 @@ before_install:
 ## Crude test, see if our container stays up after launch
 script:
   - docker run -ti nareal/r_docker_base R --version
-  - docker run -d --name rbase nareal/r_docker_base
+  - docker run -d -t --name rbase nareal/r_docker_base
   - sleep 5 && docker ps | grep r_docker_base
   - docker rm -f $(docker ps -a -q)
 
