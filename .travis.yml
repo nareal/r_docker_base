@@ -1,0 +1,24 @@
+sudo: required
+
+services:
+  - docker
+
+## Make sure all containers build without error.
+
+before_install: 
+  - docker build -t nareal/r_docker_base .
+
+## Crude test, see if our container stays up after launch
+script:
+  - docker run -ti nareal/r_docker_base R --version
+  - docker run -d --name rbase nareal/r_docker_base
+  - sleep 5 && docker ps | grep r_docker_base
+  - docker rm -f $(docker ps -a -q)
+
+ 
+notifications:
+  email:
+    recipients:
+      - nareal@gmail.com
+    on_success: always
+    on_failure: always
