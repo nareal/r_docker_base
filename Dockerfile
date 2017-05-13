@@ -9,7 +9,7 @@ RUN apt-get update \
 RUN mkdir /var/run/sshd
 
 RUN echo 'AuthorizedKeysFile /run/secrets/id_rsa.pub' >> /etc/ssh/sshd_config \
-	&& echo 'CheckHostIP no' >> /etc/ssh/sshd_config \
+	&& echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config \
 	&& echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
