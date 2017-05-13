@@ -3,12 +3,10 @@ FROM rocker/r-base
 # Reference: [Dockerize an SSH service - Docker Documentation](https://docs.docker.com/engine/examples/running_ssh_service/)
 
 RUN apt-get update \
-	&& apt-get install -y ssh openssh-server \
-	&& rm -rf /var/lib/apt/lists/*
+  && apt-get install -y ssh openssh-server \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
-
-RUN echo 'root:slave' | chpasswd
 
 RUN echo 'AuthorizedKeysFile /run/secrets/id_rsa_pub' >> /etc/ssh/sshd_config \
   && echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config \
