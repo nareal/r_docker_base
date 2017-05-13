@@ -8,7 +8,7 @@ RUN apt-get update \
 
 RUN mkdir /var/run/sshd
 
-RUN echo 'AuthorizedKeysFile /run/secrets/id_rsa.pub' >> /etc/ssh/sshd_config \
+RUN echo 'AuthorizedKeysFile /run/secrets/id_rsa_pub' >> /etc/ssh/sshd_config \
 	&& echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config \
 	&& echo 'PermitRootLogin without-password' >> /etc/ssh/sshd_config
 
